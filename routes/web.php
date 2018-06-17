@@ -27,7 +27,7 @@ Route::post('home', "HomeController@index");
 Route::post('/receive/create', "ReceiveController@createReceive")->name('create.receive');
 Route::post('/send/create', "SendController@createSend")->name('create.send');
 
-Route::post('/send/createSample', "SendController@createSendSample")->name('create.sendSample');
+Route::post('/send/upload', "SendController@uploadSend")->name('create.sendSample');
 
 // Create Originals
 // Route::post('/receive/createReceive', "ReceiveController@createReceive")->name('create.receive');

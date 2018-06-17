@@ -7,17 +7,34 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
         $('.chips').chips()
 
 		$scope.submitTransaction = function(type){
-			console.log($scope.transaction);
-			// console.log($scope.transaction)            method: 'POST',
-			// $http({
-			// 	method 	: 'POST',
-			// 	url 	: '/' + type + '/create',
-			// 	data 	: {
-			// 		'title' 		: $scope.transaction.title,
-			// 		'description' 	: $scope.transaction.description,
-			// 		'recepient' 	: $scope.transaction.recepient,
-			// 		'file' 			: $scope.transaction.file
-			// 	}
+
+			if(($scope.transaction.file) && (typeof $scope.transaction.file == 'object')){
+				uploadFile(type);
+				return;
+			} 
+			storeDetails(type)
+
+		}
+
+		var uploadFile = function(type){
+			var fd = new FormData();
+			fd.append("file", $scope.transaction.file);
+			$http({
+	            method 	: 'POST',
+				url 	: '/' + type + '/upload',
+	            data 	: fd,
+				headers: {'Content-Type': undefined }
+			}).then(function(res){
+				if(res.data == 'Failed'){
+					console.log("Upload failed");
+					return;
+				}
+				console.log(res.data);
+				storeDetails(type);
+			});
+		}
+
+		var storeDetails = function(type){
             $http({
 	            method 	: 'POST',
 				url 	: '/' + type + '/create',
@@ -28,38 +45,10 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
 					file 			: $scope.transaction.file.name
 	            }
 			}).then(function(res){	
-				console.log(res);
-				if(res.data == "Success"){
-					var fd = new FormData();
-					//Take the first selected file
-					fd.append("file", $scope.transaction.file);
-					// console.log($scope.transaction.file);
-					$http({
-			            method 	: 'POST',
-						url 	: '/send/createSample',
-			            data 	: fd,
-						headers: {'Content-Type': undefined }
-					}).then(function(res){
-						console.log(res);
-					})
-				}
-
+				console.log(res.data);
 			}, function(err){
 				console.log(err);
 			});
-			// Upload.upload({
-			// 	url: '/' + type + '/create',
-			// 	data: {
-			// 		'title' 		: $scope.transaction.title,
-			// 		'description' 	: $scope.transaction.description,
-			// 		'recepient' 	: $scope.transaction.recepient,
-			// 		'file' 			: $scope.transaction.file
-			// 	}
-			// }).then(function (res) {
-			// 	console.log(res);
-			// }, function (res) {
-			// 	console.log('Error status: ' + res.status);
-			// });
 		}
 	}	
 ]);

@@ -21,16 +21,10 @@ class SendController extends Controller
     }
 
     public function createSend(Request $request){
-        // if ($request->hasFile('file')){
-        //     // $document = 1;
-        //     return "hasFile";
-        // } else {
-        //     return "None";
-        // }
+
         $document = 0;
         if ($request->file){
             $document = 1;
-            // return "hasFile";
         }
         // Create new row in Transaction Table
         $transaction = Transaction::create([
@@ -51,7 +45,7 @@ class SendController extends Controller
         return "Success";
     }
 
-    public function createSendSample(Request $request){
+    public function uploadSend(Request $request){
         if($request->hasFile('file')){
             return "Success";
         } else {
