@@ -1,0 +1,48 @@
+.log-form-panel{
+	padding: 0;
+	padding-bottom: 8px;
+	/*display: flex;*/
+}
+
+.log-form-panel span{
+	padding: 0px;
+}
+
+.log-form-filter{
+	padding-left: 100px;
+}
+
+.dropdown-menu{
+	padding: 5px;
+}
+
+.modal-body{
+	display: flex;
+}
+
+.log-modal-add, .log-modal-view {
+	padding: 10px 10px;
+}
+
+.log-modal-add > div, .log-modal-view > div{
+	display: flex;
+	flex-direction: row;
+	/*justify-content: space-around;*/
+	padding: 5px 10px;
+}
+
+.log-modal-add > div > label, .log-modal-view > div > label{
+	/*margin-left: 5px;*/
+	padding-right: 5px;
+	width: 15%;
+}
+
+.log-modal-add > div > input, .log-modal-view > div > input{
+	/*padding-right: 5px;*/
+	width: 85%;
+}
+
+.log-table-rows:hover{
+	cursor: pointer;
+	background: gray;
+}

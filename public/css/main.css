@@ -1,0 +1,187 @@
+nav .brand-logo{
+	font: normal 1.5em "Roboto";
+	letter-spacing: 0.25em;
+	text-align: center;
+	margin: 10px 0;
+	display: inline-flex;
+	align-items: center;
+}
+
+nav .nav-wrapper{
+	padding: 0 0 01em;
+}
+
+.brand-logo > :first-child{
+	height: 40px;
+	margin-right: 0.5em;
+}
+
+.brand-logo span:nth-child(2){
+	color: #43a047;
+}
+
+.brand-logo span:last-child{
+	color: #ffba33;
+}
+
+#add-button{
+	display: inline-flex;
+	align-items: center;
+	border-radius: 1.25em;
+	padding-top: 0!important;
+	padding-bottom: 0!important;
+	height: 2.5em;
+	line-height: 1em;
+	margin-left: auto;
+	background-color: white;
+	box-shadow: 0 0 7px rgba(0,0,0,0.2);
+	color: rgba(0,0,0,0.4);
+	font-family: Roboto;
+	font-weight: bold;
+}
+
+#add-button .material-icons{
+	color: #C0CA33; ;
+}
+
+.relative{
+	position: relative!important;
+}
+
+.toolbar{
+	display: flex;
+	width: 100%;
+	/*border-bottom: 1px solid #DDD;*/
+	box-shadow: 0 0 7px rgba(0,0,0,0.2);
+	position: relative;
+	background-color: white;
+	padding: 0.75rem 1em;
+	margin-bottom: 20px;
+}
+
+.toolbar .searchbar-container{
+	width: 40%;
+	display: flex;
+}
+
+#search-bar{
+	height: unset;
+	margin-bottom: 0;
+	border-bottom: 0;
+	box-shadow: 0 0 7px rgba(0,0,0,0.2);
+	border-radius: 4px;
+	padding-left: 0.75em;
+	margin-right: 0.5rem;
+}
+
+.toolbar .searchbar-container button{
+	width: 3.8em!important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.btn-success{
+	background-color: #7CB342;
+	border: none;
+}
+
+.btn-block{
+	width: 100%;	
+	margin-top: 10px;
+}
+
+.input-field input[type="text"]::placeholder,
+.input-field input[type="password"]::placeholder,
+.input-field input[type="email"]::placeholder,
+.input-field textarea::placeholder{
+	font-size: 0.8em;
+	letter-spacing: 0.1em;
+}
+
+/* label color */
+.input-field label {
+	color: #f3ad2f;
+}
+/* label focus color */
+.input-field input[type="text"]:focus + label,
+.input-field input[type="password"]:focus + label,
+.input-field input[type="email"]:focus + label,
+.input-field textarea:focus + label {
+ 	color: #f3ad2f!important;
+}
+/* label underline focus color */
+.input-field input[type="text"]:focus,
+.input-field input[type="password"]:focus,
+.input-field input[type="email"]:focus,
+.input-field textarea:focus {
+	border-bottom: 1px solid #f3ad2f!important;
+	box-shadow: 0 1px 0 0 #f3ad2f!important;
+}
+/* valid color */
+.input-field input[type="text"].valid,
+.input-field input[type="password"].valid,
+.input-field input[type="text"].valid,
+.input-field textarea.valid {
+	border-bottom: 1px solid #0a4425!important;
+	box-shadow: 0 1px 0 0 #0a4425!important;
+}
+/* invalid color */
+.input-field input[type="text"].invalid,
+.input-field input[type="password"].invalid,
+.input-field input[type="email"].invalid,
+.input-field textarea.invalid {
+	border-bottom: 1px solid #7b1113!important;
+	box-shadow: 0 1px 0 0 #7b1113!important;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+	color: #f3ad2f;
+}
+
+.input-field .prefix ~ .helper-text{
+	margin-left: 0;
+	width: 100%;
+}
+
+.input-field .prefix{
+	font-size: 1.5rem;
+	transform: translate(0,0.25em);
+	color: #e9A13b;
+}
+
+.input-field .prefix ~ .validate ~ label{
+	margin-left: 1.75rem;
+}
+
+.input-field .prefix ~ input{
+	width: 100%;
+	padding-left: 1.75rem;
+	margin-left: 0;
+	box-sizing: border-box;
+}
+
+.error.helper-text{
+	color: #f50057;
+}
+
+[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:before, [type="radio"].with-gap:checked+span:after,
+[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:after{
+	background-color: #ffab00;
+	border-color: #ffab00;
+}
+
+.hidden{
+	display: none;
+}
+
+.close-btn{
+	position: absolute;
+	top: calc(24px + 0.45em);
+	right: 24px;
+	color: #ad1457;
+}
+
+.modal{
+	max-height: 95%;
+}

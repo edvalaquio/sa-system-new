@@ -1,0 +1,51 @@
+.title h4{
+	font-size: 2em;
+}
+
+.status{
+	font-size: 0.8em;
+	color: white;
+	border-radius: 1em;
+	padding: 0.15rem 1em 0.05em 1em;
+	text-transform: uppercase;
+	margin-left: 0.5em;
+	font-family: "Roboto Medium";
+	letter-spacing: 0.1em;
+}
+
+.additional-details{
+	border-bottom: 1px solid #DDD;
+	margin-bottom: 1em;
+	padding-bottom: 1em;	
+}
+
+.files{
+	display: flex;
+	flex-wrap: wrap;
+}
+.files > *{
+	display: flex;
+	align-items: center;
+	background-color: #CECECE;
+	padding: 0.25em 1em;
+	border-radius: 1em;
+	font-family: Roboto;
+	color: #555;
+	margin: 0.2em;
+}
+
+.note{
+	font-style: italic;
+	color: #888;
+}
+
+.note:before{
+	content: "*"
+}
+
+h6{
+	font-size: 1em;
+	margin-bottom: 0;
+	font-family: "Roboto Medium";
+	color: #888;
+}

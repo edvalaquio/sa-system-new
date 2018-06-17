@@ -1,0 +1,24 @@
+{
+  "name": "sa-system",
+  "homepage": "https://github.com/LasingNaJedi69/sa-system",
+  "authors": [
+    "LasingNaJedi69 <nuj101nuj@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "^1.7.2",
+    "jquery": "^3.3.1",
+    "materialize": "1.x.x",
+    "angular": "^1.7.2"
+  }
+}

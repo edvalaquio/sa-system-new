@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row">
+        <div ng-show="!transactions">
+            <!-- Needs Loading kit -->
+            <h2>Loading transactions...</h2>
+        </div>
+        <div ng-show="transactions" class="col s12 m8 l6">
+            <div class="card card-default preview">
+                <div class="card-header">
+                    <span class="status" ng-class="{'pending': viewTransaction .status == 'Pending', 'complete': viewTransaction .status == 'Approved'}">
+                        [[viewTransaction.status]]
+                    </span>
+                    <a class="title"><h4>[[viewTransaction.title]]</h4></a>
+                    <div class="additional-details">
+                        <span class="type" ng-class="{'sent': viewTransaction.type == 'Sent', 'received': viewTransaction.type == 'Received'}">
+                            <i ng-if="viewTransaction.type=='Received'" class="material-icons">inbox</i>
+                            <i ng-if="viewTransaction.type=='Sent'"  class="material-icons">near_me</i>
+                            &nbsp;[[viewTransaction.type]],&nbsp;
+                        </span>
+                        <span class="timestamp">[[viewTransaction.date]]</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="particular">[[viewTransaction.description]]</p>
+
+                    <h6>Attachments:</h6>
+                    <ul class="files">
+                        <li><i class="material-icons amber-text">attach_file</i>
+                        Guidelines_for_Thesis.pdf</li>
+                    </ul>
+
+                    <p class="note">[[viewTransaction.note]]</p>
+
+                </div>
+                <div class="card-footer">
+                    <a href="/transaction" class="btn light-blue">View Transaction</a>
+                </div>
+            </div>
+        </div>
+        <div ng-show="transactions" class="col s12 m4 l6">
+            <div class="fiter">
+                <ul id="date-filter">
+                    <li><a>TODAY</a></li>
+                    <li><a>YESTERDAY</a></li>
+                    <li>
+                        <input type="text" class="datepicker" placeholder="OTHER DATES" ng-model="dates"/>
+                    </li>
+                </ul>
+            </div>
+            <div ng-repeat="t in transactions" class="card card-default">
+                <div class="card-body" ng-click="showTransaction(t)" style="cursor: pointer;">
+                    <a class="title"><h4 class="truncate">[[t.title]]</h4></a>
+                    <p class="particular">[[t.description]]</p>
+                    <section class="additional-details">
+                        <span class="type" ng-class="{'sent': t.type == 'Sent', 'received': t.type == 'Received'}">
+                            <i ng-if="t.type=='Received'" class="material-icons">inbox</i>
+                            <i ng-if="t.type=='Sent'"  class="material-icons">near_me</i>
+                            &nbsp;[[t.type]],&nbsp;
+                        </span>
+                        <span class="timestamp">[[t.date]]</span>
+                        <span class="status" ng-class="{'pending': t.status == 'Pending', 'complete': t.status == 'Approved'}">[[t.status]]</span>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
