@@ -38,7 +38,7 @@ class SendController extends Controller
             'transaction_id' => $transaction->id,
             'sender_id' => Auth::user()->id,
             'receiver_id' => null,
-            'note' => "Sent to: ".$request->recipient,
+            'note' => ("Sent to: ".$request->recipient),
             'created_at' =>  \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
         ]);

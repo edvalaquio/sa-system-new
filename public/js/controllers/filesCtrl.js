@@ -40,7 +40,7 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
 			var tempData = {
 				title 			: $scope.transaction.title,
 				description 	: $scope.transaction.description,
-				recepient 		: $scope.transaction.recipient
+				recipient 		: $scope.transaction.recipient
 			}
 
 			if(hasFile){
@@ -55,10 +55,11 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
 	            data 	: tempData 
 			}).then(function(res){	
 				console.log(res.data);
+				$('.modal').modal('close');
+				$scope.uploading = false;
 			}, function(err){
 				console.log(err);
 			});
-			$scope.uploading = false;
 		}
 	}	
 ]);

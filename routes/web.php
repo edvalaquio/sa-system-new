@@ -13,15 +13,15 @@
 
 // Main Routes
 Route::get('/', "MainController@index");
-Route::get('home', "HomeController@index");
-Route::get('sent', "SendController@index");
-Route::get('received', "ReceiveController@index");
-Route::get('accounts', "AccountController@index");
-Route::get('transaction/{transaction_id}', "TransactionController@index");
-Route::get('test', "MainController@testFunction");
+Route::get('/home', "HomeController@index");
+Route::get('/sent', "SendController@index");
+Route::get('/received', "ReceiveController@index");
+Route::get('/accounts', "AccountController@index");
+Route::get('/transaction/{transaction_id}', "TransactionController@index");
+Route::get('/test', "MainController@testFunction");
 
-Route::post('testPut', "AdminController@addStaff");
-Route::post('home', "HomeController@index");
+Route::post('/testPut', "AdminController@addStaff");
+Route::post('/home', "HomeController@index");
 
 // Samples
 Route::post('/receive/create', "ReceiveController@createReceive")->name('create.receive');
@@ -38,10 +38,10 @@ Route::post('/account/createAccount', "AccountController@addAccount")->name('cre
 Route::get('/addAdmin', "MainController@addFirstUser");
 
 // admin routes
-Route::get('admin', "AdminController@index")->middleware('auth');
+Route::get('/admin', "AdminController@index")->middleware('auth');
 // staff routes
 
 
 // utility routes
-Route::get('logout', "MainController@logout");
+Route::get('/logout', "MainController@logout");
 Auth::routes();
