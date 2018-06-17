@@ -23,11 +23,12 @@ Route::get('/test', "MainController@testFunction");
 Route::post('/testPut', "AdminController@addStaff");
 Route::post('/home', "HomeController@index");
 
-// Samples
+// Modified creates
 Route::post('/receive/create', "ReceiveController@createReceive")->name('create.receive');
+Route::post('/receive/upload', "ReceiveController@uploadReceive")->name('upload.receive');
 Route::post('/send/create', "SendController@createSend")->name('create.send');
 
-Route::post('/send/upload', "SendController@uploadSend")->name('create.sendSample');
+Route::post('/send/upload', "SendController@uploadSend")->name('upload.send');
 
 // Create Originals
 // Route::post('/receive/createReceive', "ReceiveController@createReceive")->name('create.receive');

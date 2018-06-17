@@ -20,8 +20,9 @@ class ReceiveController extends Controller
     } 
 
     public function createReceive(Request $request){
+
         $document = 0;
-        if ($request->hasFile('file')) {
+        if ($request->file){
             $document = 1;
         }
         // Create new row in Transaction Table
@@ -41,6 +42,15 @@ class ReceiveController extends Controller
             "created_at" =>  \Carbon\Carbon::now(),
             "updated_at" => \Carbon\Carbon::now(),
         ]);
-        return redirect('/received');
+        return $request;
+    }
+
+    public function uploadReceive(Request $request){
+        if(!$request->hasFile('file')){
+            return "Fail";
+        }
+        $path = $path = $request->file->store('images');
+        return $path;
+        // return $request->data['description'];
     }
 }

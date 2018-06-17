@@ -7,7 +7,6 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
         $('.chips').chips();
         $scope.uploading = false;
 
-
 		$scope.submitTransaction = function(type){
 			$scope.uploading = true;
 			if(($scope.transaction.file) && (typeof $scope.transaction.file == 'object')){

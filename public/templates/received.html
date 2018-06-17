@@ -37,21 +37,25 @@
     </div>
 </div>
 
+<!-- Modal -->
 <div id="add-modal" class="modal">
-    <div class="modal-content">
-        <h4>Add received</h4>
+    <div ng-show="uploading" class="modal-content">
+        <h4>Please wait...</h4>
+    </div>
+    <div ng-hide="uploading" class="modal-content">
+        <h4>Add Received</h4>
         <a class="modal-close close-btn"><i class="material-icons">clear</i></a>
-
-        <form>
-            <div class="file-field input-field">
+        <form name="form">
+            <!-- <input type="file"  /> -->
+        <div class="file-field input-field">
                 <div class="btn btn-large amber accent-4">
                     <span><i class="material-icons">attach_file</i></span>
-                    <input type="file" name="file">
+                    <input type="file" file="transaction.file" >
                 </div>
                 <div class="file-path-wrapper">
-                    <input ng-model="transaction.file" class="file-path validate" type="text" placeholder="ATTACH A FILE (optional)">
+                    <input value="[[transaction.file]]" class="file-path validate" type="text" placeholder="ATTACH A FILE (optional)">
                 </div>
-            </div>
+            </div> 
             <div class="input-field">
                 <input ng-model="transaction.title" type="text" id="title" name="title">
                 <label for="title">Title</label>
