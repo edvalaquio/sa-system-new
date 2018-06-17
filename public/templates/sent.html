@@ -40,7 +40,10 @@
 
 <!-- Modal -->
 <div id="add-modal" class="modal">
-    <div class="modal-content">
+    <div ng-show="uploading" class="modal-content">
+        <h4>Please wait...</h4>
+    </div>
+    <div ng-hide="uploading" class="modal-content">
         <h4>Add Sent</h4>
         <a class="modal-close close-btn"><i class="material-icons">clear</i></a>
         <form name="form">

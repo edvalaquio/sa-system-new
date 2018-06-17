@@ -4,16 +4,17 @@ var files = angular.module("controllers.filesCtrl", [])
 files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "$http", "apiUrl",
 	function($rootScope, $scope, $window, $location, $http, apiUrl){
 		$('.modal').modal();
-        $('.chips').chips()
+        $('.chips').chips();
+        $scope.uploading = false;
+
 
 		$scope.submitTransaction = function(type){
-
+			$scope.uploading = true;
 			if(($scope.transaction.file) && (typeof $scope.transaction.file == 'object')){
 				uploadFile(type);
 				return;
 			} 
-			storeDetails(type)
-
+			storeDetails(type, false);
 		}
 
 		var uploadFile = function(type){
@@ -25,30 +26,39 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
 	            data 	: fd,
 				headers: {'Content-Type': undefined }
 			}).then(function(res){
-				if(res.data == 'Failed'){
+				if(res.data == 'Fail'){
 					console.log("Upload failed");
+					$scope.uploading = false;
 					return;
 				}
 				console.log(res.data);
-				storeDetails(type);
+				storeDetails(type, true);
 			});
 		}
 
-		var storeDetails = function(type){
+		var storeDetails = function(type, hasFile){
+			var tempData = {
+				title 			: $scope.transaction.title,
+				description 	: $scope.transaction.description,
+				recepient 		: $scope.transaction.recipient
+			}
+
+			if(hasFile){
+				tempData.file = $scope.transaction.file.name;
+			} else {
+				tempData.file = null;
+			}
+
             $http({
 	            method 	: 'POST',
 				url 	: '/' + type + '/create',
-	            data: {
-					title 			: $scope.transaction.title,
-					description 	: $scope.transaction.description,
-					recepient 		: $scope.transaction.recipient,
-					file 			: $scope.transaction.file.name
-	            }
+	            data 	: tempData 
 			}).then(function(res){	
 				console.log(res.data);
 			}, function(err){
 				console.log(err);
 			});
+			$scope.uploading = false;
 		}
 	}	
 ]);

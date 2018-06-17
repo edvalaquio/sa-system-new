@@ -42,15 +42,15 @@ class SendController extends Controller
             'created_at' =>  \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
         ]);
-        return "Success";
+        return $request;
     }
 
     public function uploadSend(Request $request){
-        if($request->hasFile('file')){
-            return "Success";
-        } else {
+        if(!$request->hasFile('file')){
             return "Fail";
         }
+        $path = $path = $request->file->store('images');
+        return $path;
         // return $request->data['description'];
     }
 
