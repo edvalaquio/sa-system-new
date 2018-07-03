@@ -19,7 +19,7 @@ Route::get('/received', "ReceiveController@index");
 Route::get('/accounts', "AccountController@index");
 Route::get('/test', "MainController@testFunction");
 Route::get('/transaction/{transaction_id}', "TransactionController@index");
-Route::get('/userID', "GetUserID@HomeController");
+Route::get('/userID', "HomeController@getUserID");
 
 Route::post('/testPut', "AdminController@addStaff");
 Route::post('/home', "HomeController@index");

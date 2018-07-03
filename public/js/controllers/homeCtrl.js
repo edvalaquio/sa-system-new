@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module("controllers.homeCtrl", [])
-.controller("homeCtrl", ["$rootScope", "$scope", "$window", "$location", "$http",
-	function($rootScope, $scope, $window, $location, $http){
+.controller("homeCtrl", ["$rootScope", "$scope", "$window", "$location", "$http", 'getUserID',
+	function($rootScope, $scope, $window, $location, $http, getUserID){
 		console.log("Here in HomeCtrl");
+		console.log(getUserID);
 
 		var formatDate = function(date) {
 		    var d = new Date(date),
@@ -23,7 +24,6 @@ angular.module("controllers.homeCtrl", [])
 				'url'		: '/home/' + date
 			}).then(function(res){
 				$scope.transactions = res.data;
-				console.log(res.data);
 				$scope.transactions.forEach(function(item, index){
 					item.date = new Date(item.date);
 					if(item.note.startsWith('Sent')){
@@ -32,7 +32,6 @@ angular.module("controllers.homeCtrl", [])
 						$scope.transactions[index].type = "Received";
 					}
 				});
-				console.log($scope.transactions);
 				$scope.viewTransaction = $scope.transactions[0];
 			}, function(error){
 				console.log(error);

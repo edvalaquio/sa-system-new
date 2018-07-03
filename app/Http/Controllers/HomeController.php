@@ -58,7 +58,7 @@ class HomeController extends Controller
 
     }
 
-    public function GetUserID(){
+    public function getUserID(){
         return Auth::user()->id;
     }
 
