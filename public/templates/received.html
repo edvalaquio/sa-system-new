@@ -10,7 +10,7 @@
 
 <div class="toolbar">
     <div class="searchbar-container">
-        <input type="text" id="search-bar" name="keyword" placeholder="Search...">
+        <input type="text" id="search-bar" name="keyword" placeholder="Search..." ng-model="searchItem">
         <button class="btn-floating light-green" type="submit">
             <i class="material-icons">search</i>
         </button>
@@ -22,7 +22,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card card-default" ng-repeat="t in transactions">
+            <div class="card card-default" ng-repeat="t in transactions | filter: searchItem">
                 <div class="card-body" style="cursor: pointer;" ng-click="viewTransaction(t.transaction_id)">
                     <a class="title"><h4 class="truncate">[[t.title]]</h4></a>
                     <p class="particular">[[t.description]]</p>
