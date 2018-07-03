@@ -4,8 +4,11 @@
             <a href="#" class="title"><h4 class="truncate">[[transaction.title]]</h4></a>
             <section class="additional-details">
                 <span class="type received"><i class="material-icons">inbox</i>&nbsp;Received,&nbsp;</span>
-                <span class="timestamp">[[transaction.created_at]]</span>
+                <span class="timestamp">[[transaction.date | date : "fullDate"]]</span>
                 <span class="status pending">[[transaction.status]]</span>
+                <button class="btn waves-effect waves-light btn-small modal-trigger" name="action" data-target="add-modal" modal>Forward
+                    <i class="material-icons right">send</i>
+                </button>
             </section>
             <ul>
                 <li class="chip">DTR</li>
@@ -24,7 +27,55 @@
             </p>
 
             <h6>History</h6>
-            <p class="note">To be worked on.</p>
+            <table class="responsive-table centered">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Recipient</th>
+                        <th>Date</th>
+                        <th>Note</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="t in transactions">
+                        <td>[[t.type]]</td>
+                        <td>[[t.type]]</td>
+                        <td>[[t.date | date : "fullDate"]]</td>
+                        <td>[[t.note]]</td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <p class="note"></p>
         </div>
+    </div>
+</div>
+
+
+<div id="add-modal" class="modal">
+    <div ng-show="uploading" class="modal-content">
+        <h4>Please wait...</h4>
+    </div>
+    <div ng-hide="uploading" class="modal-content">
+        <h4>Forward To</h4>
+        <a class="modal-close close-btn"><i class="material-icons">clear</i></a>
+        <form name="form">
+            <!-- <input type="file"  /> -->
+
+            <div class="input-field">
+                <input ng-model="recipient" type="text" id="recipient" name="recipient" list="autocomplete" autocomplete="off" ng-change="autocompleteRecipient()">
+                <datalist id="autocomplete">
+                    <option ng-repeat="name in names" value="s">asdfsafsdf</option>
+                </datalist>
+                <label for="recipient">Recipient</label>
+            </div>
+            <div class="input-field">
+                <textarea  class="materialize-textarea" id="note" name="description"></textarea>
+                <label for="note">Note</label>
+            </div>
+            <label>Tags</label>
+            <div class="chips chips-autocomplete"></div>
+            <button class="btn btn-large green waves-effect waves-light" id="confirm-add" ng-click="submitTransaction('send')"><i class="material-icons">add</i></button>
+        </form>
     </div>
 </div>

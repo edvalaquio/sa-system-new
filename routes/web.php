@@ -19,9 +19,11 @@ Route::get('/received', "ReceiveController@index");
 Route::get('/accounts', "AccountController@index");
 Route::get('/test', "MainController@testFunction");
 Route::get('/transaction/{transaction_id}', "TransactionController@index");
+Route::get('/userID', "GetUserID@HomeController");
 
 Route::post('/testPut', "AdminController@addStaff");
 Route::post('/home', "HomeController@index");
+Route::post('/autocompleteRecipient', "TransactionController@autocompleteRecipient");
 
 // Modified creates
 Route::post('/receive/create', "ReceiveController@createReceive")->name('create.receive');
