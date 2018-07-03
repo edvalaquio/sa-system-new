@@ -29,7 +29,7 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
 	            	keyword 	: $scope.keyword
 	            }
 			}).then(function(res){
-				console.log(res.data);
+				$scope.transactions = res.data;
 			});
 		}
 

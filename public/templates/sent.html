@@ -10,10 +10,10 @@
 
 <div class="toolbar">
     <div class="searchbar-container">
-        <input ng-model="keyword" type="text" id="search-bar" name="keyword" placeholder="Search...">
-        <button class="btn-floating light-green" type="submit" ng-click="searchTransaction('send')">
+        <input ng-model="keyword" type="text" id="search-bar" name="keyword" placeholder="Search..." ng-change="searchTransaction('send')">
+<!--         <button class="btn-floating light-green" type="submit" ng-click="searchTransaction('send')">
             <i class="material-icons">search</i>
-        </button>
+        </button> -->
     </div>
     <a class="btn btn-success modal-trigger" id="add-button" data-target="add-modal" modal>
         <i class="material-icons">add</i> Sent
