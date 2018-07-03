@@ -10,8 +10,8 @@
 
 <div class="toolbar">
     <div class="searchbar-container">
-        <input type="text" id="search-bar" name="keyword" placeholder="Search...">
-        <button class="btn-floating light-green" type="submit">
+        <input ng-model="keyword" type="text" id="search-bar" name="keyword" placeholder="Search...">
+        <button class="btn-floating light-green" type="submit" ng-click="searchTransaction('send')">
             <i class="material-icons">search</i>
         </button>
     </div>
