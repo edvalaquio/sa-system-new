@@ -32,7 +32,14 @@ angular.module("indexApp",
 	}
 ])
 .service("getUserID", function($http){
-
+	$http({
+		'method'	:	'GET',
+		'url'		:	'/userID'
+	}).then(function(res){
+		console.log(res.data);
+	}, function(error){
+		console.log(error);
+	});
 })
 .config(["$interpolateProvider", function($interpolateProvider) {
     $interpolateProvider.startSymbol("[[");

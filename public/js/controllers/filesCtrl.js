@@ -21,6 +21,19 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
 			console.log(error);
 		});
 
+		$scope.searchTransaction = function(type){
+			$http({
+	            method 	: 'POST',
+				url 	: '/' + type + '/search',
+	            data 	: {
+	            	keyword 	: $scope.keyword
+	            }
+			}).then(function(res){
+				console.log(res.data);
+			});
+		}
+
+
 		$scope.submitTransaction = function(type){
 			$scope.uploading = true;
 			if(($scope.transaction.file) && (typeof $scope.transaction.file == 'object')){

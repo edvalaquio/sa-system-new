@@ -19,10 +19,10 @@ Route::get('/received', "ReceiveController@index");
 Route::get('/accounts', "AccountController@index");
 Route::get('/test', "MainController@testFunction");
 Route::get('/transaction/{transaction_id}', "TransactionController@index");
-Route::get('/userID', "GetUserID@HomeController");
+Route::get('/userID', "HomeController@getUserID");
 
-Route::post('/sentSearch', "SendController@search");
-Route::post('/receivedSearch', "ReceiveController@search");
+Route::post('/send/search', "SendController@search");
+Route::post('/receive/search', "ReceiveController@search");
 Route::post('/testPut', "AdminController@addStaff");
 Route::post('/home', "HomeController@index");
 Route::post('/autocompleteRecipient', "TransactionController@autocompleteRecipient");
