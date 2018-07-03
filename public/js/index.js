@@ -31,6 +31,9 @@ angular.module("indexApp",
 		})
 	}
 ])
+.service("getUserID", function($http){
+
+})
 .config(["$interpolateProvider", function($interpolateProvider) {
     $interpolateProvider.startSymbol("[[");
     $interpolateProvider.endSymbol("]]");

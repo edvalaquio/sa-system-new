@@ -6,7 +6,6 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
 		$('.modal').modal();
         $('.chips').chips();
         $scope.uploading = false;
-		console.log($location.path());
 
 		// check if either sent or received
 		$http({
@@ -71,13 +70,13 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
 				console.log(res.data);
 				$('.modal').modal('close');
 				$scope.uploading = false;
+				$scope.transactions.push(res.data)
 			}, function(err){
 				console.log(err);
 			});
 		}
 
 		$scope.viewTransaction = function(data){
-			console.log("sdfsadf)");
 			$location.path('/transaction').search({id : data});
 		}
 	}
