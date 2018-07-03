@@ -22,6 +22,7 @@ Route::get('/transaction/{transaction_id}', "TransactionController@index");
 Route::get('/userID', "GetUserID@HomeController");
 
 Route::post('/sentSearch', "SendController@search");
+Route::post('/receivedSearch', "ReceiveController@search");
 Route::post('/testPut', "AdminController@addStaff");
 Route::post('/home', "HomeController@index");
 Route::post('/autocompleteRecipient', "TransactionController@autocompleteRecipient");

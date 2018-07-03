@@ -54,4 +54,15 @@ class ReceiveController extends Controller
         return $path;
         // return $request->data['description'];
     }
+
+    public function search(Request $request){
+        $sent = Transaction::join('transact', 'transaction_id', '=', 'transactions.id')
+            ->leftjoin('users', 'users.id', '=', 'sender_id')
+            ->where('receiver_id', '=', Auth::user()->id)
+            ->where('transactions.description', '=', "*".$request->keyword."*")
+            ->orWhere('transactions.title', '=', "*".$request->keyword."*")
+            ->select('*', 'transact.created_at', 'transactions.status', 'transact.created_at as date')
+            ->get();
+        // return $received;
+        // return view('sent', compact('sent'));
 }
