@@ -1,11 +1,11 @@
 <div class="container">
     <div class="row">
-        <!-- <div ng-show="!transactions"> -->
-            <!-- Needs Loading kit -->
-            <!-- <h2>Loading transactions...</h2>
-        </div> -->
+        <div>
+            <h2 ng-show="!transactions">Loading transactions...</h2>
+            <h2 ng-show="transactions.length == 0"> No transactions </h2>
+        </div>
         <div class="col s12 m8 l6">
-            <div class="card card-default preview">
+            <div ng-show="transactions.length > 0" class="card card-default preview">
                 <div class="card-header">
                     <span class="status" ng-class="{'pending': viewTransaction .status == 'Pending', 'complete': viewTransaction .status == 'Approved'}">
                         [[viewTransaction.status]]

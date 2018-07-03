@@ -42,7 +42,7 @@ angular.module("controllers.homeCtrl", [])
 
 		    return [year, month, day].join('-');
 		}
-
+		
 		function queryDate(date){
 			$http({
 				'method'	: 'GET',
