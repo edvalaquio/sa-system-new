@@ -16,20 +16,20 @@
         </button>
     </div>
     <a class="btn btn-success modal-trigger" id="add-button" data-target="add-modal" modal>
-        <i class="material-icons">add</i> Sent 
+        <i class="material-icons">add</i> Sent
     </a>
 </div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card card-default">
-                <div class="card-body">
-                    <a href="#" class="title"><h4 class="truncate">Requires Signature from Dean</h4></a>
-                    <p class="particular">Requires Signature from Dean</p>
+            <div class="card card-default" ng-repeat="t in transactions" >
+                <div class="card-body" style="cursor: pointer;" ng-click="viewTransaction(t.transaction_id)">
+                    <a class="title"><h4 class="truncate">[[t.title]]</h4></a>
+                    <p class="particular">[[t.description]]</p>
                     <section class="additional-details">
                         <span class="type sent"><i class="material-icons">near_me</i>&nbsp;Sent,&nbsp;</span>
-                        <span class="timestamp">March 2, 2018, 9:32 am</span>
-                        <span class="status pending">Pending</span>
+                        <span class="timestamp">[[t.date | date: "fullDate"]]</span>
+                        <span class="status pending">[[t.status]]</span>
                     </section>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                 <div class="file-path-wrapper">
                     <input value="[[transaction.file]]" class="file-path validate" type="text" placeholder="ATTACH A FILE (optional)">
                 </div>
-            </div> 
+            </div>
             <div class="input-field">
                 <input ng-model="transaction.title" type="text" id="title" name="title">
                 <label for="title">Title</label>
@@ -74,4 +74,3 @@
         </form>
     </div>
 </div>
-

@@ -8,12 +8,13 @@ use App\Transaction;
 class TransactionController extends Controller
 {
     public function index(Request $request, $id){
-        $transacts= Transaction::join('transact', 'transaction_id', '=', 'transactions.id')
+        $transacts= Transaction::select('title', 'description', 'note', 'transactions.status', 'has_documents', 'transact.created_at')
+            ->join('transact', 'transaction_id', '=', 'transactions.id')
             ->where('transaction_id', '=', $id)
-            ->leftJoin('users', 'receiver_id', '=', 'users.id')
-            ->leftJoin('users as users1', 'sender_id', '=', 'users1.id')
+            ->leftJoin('users as receiver', 'receiver_id', '=', 'receiver.id')
+            ->leftJoin('users as sender', 'sender_id', '=', 'sender.id')
             ->get();
-        return view('transaction', compact('transacts'));
+        return json_encode($transacts);
     }
 
 }

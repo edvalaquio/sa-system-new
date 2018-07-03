@@ -4,7 +4,8 @@ angular.module("indexApp",
 	["ngRoute",
 	"controllers.accountsCtrl",
 	"controllers.homeCtrl",
-	"controllers.filesCtrl"])
+	"controllers.filesCtrl",
+	"controllers.transactionCtrl"])
 .config(["$routeProvider", "$locationProvider",
 	function($routeProvider, $locationProvider){
 		$routeProvider
@@ -23,6 +24,10 @@ angular.module("indexApp",
 		.when("/accounts", {
 			templateUrl: 	"/templates/accounts.html",
 			controller: 	"accountsCtrl"
+		})
+		.when("/transaction", {
+			templateUrl:	"/templates/transaction.html",
+			controller: 	"transactionCtrl"
 		})
 	}
 ])

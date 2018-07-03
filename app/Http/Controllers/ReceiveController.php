@@ -13,11 +13,12 @@ class ReceiveController extends Controller
         $received = Transaction::join('transact', 'transaction_id', '=', 'transactions.id')
             ->leftjoin('users', 'users.id', '=', 'sender_id')
             ->where('receiver_id', '=', Auth::user()->id)
-            ->select('*', 'transact.created_at')
+            ->select('*', 'transact.created_at', 'transactions.status' , 'transact.created_at as date')
             ->get();
         // return $received;
-        return view('received', compact('received'));
-    } 
+        // return view('received', compact('received'));
+        return json_encode($received);
+    }
 
     public function createReceive(Request $request){
 

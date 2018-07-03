@@ -13,12 +13,12 @@
 
 // Main Routes
 Route::get('/', "MainController@index");
-Route::get('/home', "HomeController@index");
+Route::get('/home/{date}', "HomeController@index");
 Route::get('/sent', "SendController@index");
 Route::get('/received', "ReceiveController@index");
 Route::get('/accounts', "AccountController@index");
-Route::get('/transaction/{transaction_id}', "TransactionController@index");
 Route::get('/test', "MainController@testFunction");
+Route::get('/transaction/{transaction_id}', "TransactionController@index");
 
 Route::post('/testPut', "AdminController@addStaff");
 Route::post('/home', "HomeController@index");
@@ -27,8 +27,8 @@ Route::post('/home', "HomeController@index");
 Route::post('/receive/create', "ReceiveController@createReceive")->name('create.receive');
 Route::post('/receive/upload', "ReceiveController@uploadReceive")->name('upload.receive');
 Route::post('/send/create', "SendController@createSend")->name('create.send');
-
 Route::post('/send/upload', "SendController@uploadSend")->name('upload.send');
+
 
 // Create Originals
 // Route::post('/receive/createReceive', "ReceiveController@createReceive")->name('create.receive');

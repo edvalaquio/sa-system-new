@@ -14,10 +14,11 @@ class SendController extends Controller
         $sent = Transaction::join('transact', 'transaction_id', '=', 'transactions.id')
             ->leftjoin('users', 'users.id', '=', 'receiver_id')
             ->where('sender_id', '=', Auth::user()->id)
-            ->select('*', 'transact.created_at')
+            ->select('*', 'transact.created_at', 'transactions.status', 'transact.created_at as date')
             ->get();
         // return $received;
-        return view('sent', compact('sent'));
+        // return view('sent', compact('sent'));
+        return json_encode($sent);
     }
 
     public function createSend(Request $request){

@@ -87,17 +87,14 @@
 <div id="add-modal" class="modal">
     <div class="modal-content">
         <h5>Add Account</h5>
-        <form method="POST" action="{{ route('register') }}" id="register-form">
+        <form method="POST"  id="register-form">
             <div class="input-field">
-                <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required>
+                <input id="username" type="text" class="form-control" name="username" value="" required>
                 <label for="username">Username</label>
- <!--                @if ($errors->has('username'))
-                    <span class="helper-text error">{{ $errors->first('username') }}</span>
-                @endif -->
             </div>
 
             <div class="input-field">
-                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required>
+                <input id="name" type="text" class="form-control" name="name" value="" required>
                 <label for="name">Name</label>
 <!--                 @if ($errors->has('name'))
                     <span class="helper-text error">{{ $errors->first('name') }}</span>
@@ -106,11 +103,8 @@
 
 
             <div class="input-field">
-                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                <input id="email" type="email" class="form-control" name="email" value="" required>
                 <label for="email">E-mail Address</label>
-<!--                 @if ($errors->has('email'))
-                    <span class="helper-text error">{{ $errors->first('email') }}</span>
-                @endif -->
             </div>
 
             <div class="radio-buttons">
@@ -138,17 +132,14 @@
             </div>
 
             <div class="input-field" id="group-field">
-                <input id="group" type="text" class="form-control{{ $errors->has('group') ? ' is-invalid' : '' }}" name="group" value="{{ old('group') }}" required>
+                <input id="group" type="text" class="form-control" name="group" value="" required>
                 <label for="group">Group</label>
             </div>
 
             <div class="input-field">
                 <span class="check-pass" id="show-pass"><i class="material-icons">visibility</i></span>
-                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                <input id="password" type="password" class="form-control" name="password" required>
                 <label for="password">Password</label>
-<!--                 @if ($errors->has('password'))
-                    <span class="helper-text error">{{ $errors->first('password') }}</span>
-                @endif -->
             </div>
 
 

@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row">
-        <div ng-show="!transactions">
+        <!-- <div ng-show="!transactions"> -->
             <!-- Needs Loading kit -->
-            <h2>Loading transactions...</h2>
-        </div>
-        <div ng-show="transactions" class="col s12 m8 l6">
+            <!-- <h2>Loading transactions...</h2>
+        </div> -->
+        <div class="col s12 m8 l6">
             <div class="card card-default preview">
                 <div class="card-header">
                     <span class="status" ng-class="{'pending': viewTransaction .status == 'Pending', 'complete': viewTransaction .status == 'Approved'}">
@@ -17,14 +17,15 @@
                             <i ng-if="viewTransaction.type=='Sent'"  class="material-icons">near_me</i>
                             &nbsp;[[viewTransaction.type]],&nbsp;
                         </span>
-                        <span class="timestamp">[[viewTransaction.date]]</span>
+                        <span class="timestamp">[[viewTransaction.date | date: "fullDate"]]</span>
                     </div>
                 </div>
                 <div class="card-body">
                     <p class="particular">[[viewTransaction.description]]</p>
 
-                    <h6>Attachments:</h6>
-                    <ul class="files">
+                    <h6 ng-show="viewTransaction">Attachments:</h6>
+                    <ul class="files" ng-show="viewTransaction">
+                        <li ng-if="viewTransaction.has_documents==0"><i> None</i></li>
                         <li><i class="material-icons amber-text">attach_file</i>
                         Guidelines_for_Thesis.pdf</li>
                     </ul>
@@ -33,19 +34,26 @@
 
                 </div>
                 <div class="card-footer">
-                    <a href="/transaction" class="btn light-blue">View Transaction</a>
+                    <a ng-show="viewTransaction" href="#!/transaction?id=[[viewTransaction.id]]" class="btn light-blue">View Transaction</a>
                 </div>
             </div>
+            <div ng-show="!transactions" class="">
+                No Data
+            </div>
         </div>
-        <div ng-show="transactions" class="col s12 m4 l6">
+        <div class="col s12 m4 l6">
             <div class="fiter">
                 <ul id="date-filter">
-                    <li><a>TODAY</a></li>
-                    <li><a>YESTERDAY</a></li>
+                    <li ng-click="changeDate('today')" style="cursor: pointer;"><a>TODAY</a></li>
+
+                    <li ng-click="changeDate('yesterday')" style="cursor: pointer;"><a>YESTERDAY</a></li>
                     <li>
-                        <input type="text" class="datepicker" placeholder="OTHER DATES" ng-model="dates"/>
+                        <input type="text" class="datepicker" placeholder="OTHER DATES" ng-model="dates" ng-change="changeDate()"/>
                     </li>
                 </ul>
+            </div>
+            <div class="" ng-show="!transactions">
+                No Data
             </div>
             <div ng-repeat="t in transactions" class="card card-default">
                 <div class="card-body" ng-click="showTransaction(t)" style="cursor: pointer;">
@@ -57,7 +65,7 @@
                             <i ng-if="t.type=='Sent'"  class="material-icons">near_me</i>
                             &nbsp;[[t.type]],&nbsp;
                         </span>
-                        <span class="timestamp">[[t.date]]</span>
+                        <span class="timestamp">[[t.date | date: "fullDate"]]</span>
                         <span class="status" ng-class="{'pending': t.status == 'Pending', 'complete': t.status == 'Approved'}">[[t.status]]</span>
                     </section>
                 </div>

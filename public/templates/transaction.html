@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <a href="#" class="title"><h4 class="truncate">[[transaction.title]]</h4></a>
+            <section class="additional-details">
+                <span class="type received"><i class="material-icons">inbox</i>&nbsp;Received,&nbsp;</span>
+                <span class="timestamp">[[transaction.created_at]]</span>
+                <span class="status pending">[[transaction.status]]</span>
+            </section>
+            <ul>
+                <li class="chip">DTR</li>
+                <li class="chip">Thesis</li>
+            </ul>
+            <p class="particular">[[transaction.description]]</p>
+
+            <h6>Attachments:</h6>
+            <ul class="files">
+                <li ng-if="transaction.has_documents == 1"><i class="material-icons amber-text">attach_file</i> Guidelines_for_Thesis.pdf</li>
+                <li ng-if="transaction.has_documents == 0">None</li>
+            </ul>
+
+            <p class="note">
+                [[transaction.note]]
+            </p>
+
+            <h6>History</h6>
+            <p class="note">To be worked on.</p>
+        </div>
+    </div>
+</div>

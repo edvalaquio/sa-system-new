@@ -6,16 +6,30 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
 		$('.modal').modal();
         $('.chips').chips();
         $scope.uploading = false;
+		console.log($location.path());
+
+		// check if either sent or received
+		$http({
+			'method'	:	'GET',
+			'url'		:	$location.path()
+		}).then(function(res){
+			$scope.transactions = res.data;
+			$scope.transactions.forEach(function(item, index){
+				item.date = new Date(item.date);
+			});
+			console.log(res.data);
+		}, function(error){
+			console.log(error);
+		});
 
 		$scope.submitTransaction = function(type){
 			$scope.uploading = true;
 			if(($scope.transaction.file) && (typeof $scope.transaction.file == 'object')){
 				uploadFile(type);
 				return;
-			} 
+			}
 			storeDetails(type, false);
 		}
-
 		var uploadFile = function(type){
 			var fd = new FormData();
 			fd.append("file", $scope.transaction.file);
@@ -35,6 +49,7 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
 			});
 		}
 
+
 		var storeDetails = function(type, hasFile){
 			var tempData = {
 				title 			: $scope.transaction.title,
@@ -51,8 +66,8 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
             $http({
 	            method 	: 'POST',
 				url 	: '/' + type + '/create',
-	            data 	: tempData 
-			}).then(function(res){	
+	            data 	: tempData
+			}).then(function(res){
 				console.log(res.data);
 				$('.modal').modal('close');
 				$scope.uploading = false;
@@ -60,5 +75,10 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
 				console.log(err);
 			});
 		}
-	}	
+
+		$scope.viewTransaction = function(data){
+			console.log("sdfsadf)");
+			$location.path('/transaction').search({id : data});
+		}
+	}
 ]);

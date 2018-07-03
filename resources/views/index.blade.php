@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @push('styles')
 <link href="{{ asset('css/home.css') }}" rel="stylesheet">
 <link href="{{ asset('css/accounts.css') }}" rel="stylesheet">
@@ -17,4 +18,5 @@
 <script type="text/javascript" src="{{ asset('/js/controllers/filesCtrl.js')}}"></script>
 <script type="text/javascript" src="{{ asset('/js/controllers/homeCtrl.js')}}"></script>
 <script type="text/javascript" src="{{ asset('/js/controllers/accountsCtrl.js')}}"></script>
+<script type="text/javascript" src="{{ asset('/js/controllers/transactionCtrl.js')}}"></script>
 @endpush
