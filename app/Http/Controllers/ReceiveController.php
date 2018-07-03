@@ -14,6 +14,8 @@ class ReceiveController extends Controller
             ->leftjoin('users', 'users.id', '=', 'sender_id')
             ->where('receiver_id', '=', Auth::user()->id)
             ->select('*', 'transact.created_at', 'transactions.status' , 'transact.created_at as date')
+            ->orderBy('transact.created_at', 'asc')
+            ->take(10)
             ->get();
         // return $received;
         // return view('received', compact('received'));
@@ -56,13 +58,19 @@ class ReceiveController extends Controller
     }
 
     public function search(Request $request){
-        $sent = Transaction::join('transact', 'transaction_id', '=', 'transactions.id')
+        $received = Transaction::join('transact', 'transaction_id', '=', 'transactions.id')
             ->leftjoin('users', 'users.id', '=', 'sender_id')
             ->where('receiver_id', '=', Auth::user()->id)
-            ->where('transactions.description', '=', "*".$request->keyword."*")
-            ->orWhere('transactions.title', '=', "*".$request->keyword."*")
+            ->where(function($q) use ($request){
+                $q->where('transactions.description', 'LIKE', "%".$request->keyword."%")
+                ->orWhere('transactions.title', 'LIKE', "%".$request->keyword."%");
+            })
             ->select('*', 'transact.created_at', 'transactions.status', 'transact.created_at as date')
+            ->orderBy('transact.created_at', 'asc')
+            ->take(10)
             ->get();
         // return $received;
         // return view('sent', compact('sent'));
+        return json_encode($received);
+    }
 }
