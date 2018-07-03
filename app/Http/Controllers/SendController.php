@@ -63,4 +63,17 @@ class SendController extends Controller
             'transaction_id' => $request->transaction_id,
         ]);
     }
+
+    public function search(Request $request){
+        $sent = Transaction::join('transact', 'transaction_id', '=', 'transactions.id')
+            ->leftjoin('users', 'users.id', '=', 'receiver_id')
+            ->where('sender_id', '=', Auth::user()->id)
+            ->where('transactions.description', '=', "*".$request->keyword."*")
+            ->orWhere('transactions.title', '=', "*".$request->keyword."*")
+            ->select('*', 'transact.created_at', 'transactions.status', 'transact.created_at as date')
+            ->get();
+        // return $received;
+        // return view('sent', compact('sent'));
+        return json_encode($sent);
+    }
 }
