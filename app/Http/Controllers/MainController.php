@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\File;
 use App\User;
+use App\Admin;
 
 
 class MainController extends Controller
@@ -58,6 +59,10 @@ class MainController extends Controller
             'status' => 'ok',
             'type' => 'admin',
             'password' => Hash::make('admin1'),
+        ]);
+        Admin::create([
+            'user_id' => $user->id,
+            'group' => 'dean',
         ]);
         Auth::login($user, true);
         return redirect('/');

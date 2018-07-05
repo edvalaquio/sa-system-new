@@ -56,7 +56,7 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
 					$scope.uploading = false;
 					return;
 				}
-				console.log(res.data);
+				console.log(res);
 				storeDetails(type, true);
 			});
 		}
@@ -80,7 +80,7 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
 				url 	: '/' + type + '/create',
 	            data 	: tempData
 			}).then(function(res){
-				console.log(res.data);
+				console.log(res);
 				$('.modal').modal('close');
 				$scope.uploading = false;
 				$scope.transactions.push(res.data)

@@ -26,7 +26,7 @@
                     <h6 ng-show="viewTransaction">Attachments:</h6>
                     <ul class="files" ng-show="viewTransaction">
                         <li ng-if="viewTransaction.has_documents==0"><i> None</i></li>
-                        <li><i class="material-icons amber-text">attach_file</i>
+                        <li ng-if="viewTransaction.has_documents==1"><i class="material-icons amber-text">attach_file</i>
                         Guidelines_for_Thesis.pdf</li>
                     </ul>
 

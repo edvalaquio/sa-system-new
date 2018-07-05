@@ -20,6 +20,9 @@ Route::get('/accounts', "AccountController@index");
 Route::get('/test', "MainController@testFunction");
 Route::get('/transaction/{transaction_id}', "TransactionController@index");
 Route::get('/userID', "HomeController@getUserID");
+Route::get('/getAdmins', "AccountController@getAdmins");
+Route::get('/getStaffs', "AccountController@getStaffs");
+
 
 Route::post('/send/search', "SendController@search");
 Route::post('/receive/search', "ReceiveController@search");

@@ -17,11 +17,26 @@ class AccountController extends Controller
         return view('accounts', compact('staffs', 'admins'));
     }
 
+    public function getAdmins(){
+        $admins = Admin::join('users', 'users.id', '=', 'admins.user_id')
+            ->get();
+        return json_encode($admins);
+    }
+
+    public function getStaffs(){
+        $staffs = Staff::join('users', 'users.id', '=', 'staffs.user_id')
+            ->join('admins', 'admins.id', '=', 'staffs.admin_id')
+            ->where('admins.group', '=', Auth::user()->getType->group)
+            ->get();
+        return json_encode($staffs);
+    }
+
     public function addAccount(Request $request){
         $type = "staff";
         if($request->type == 'admin'){
             $type = "admin";
         }
+        return $request->all();
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -42,6 +57,5 @@ class AccountController extends Controller
                 'admin_id' => Auth::user()->getType->id,
             ]);
         }
-        return redirect('/accounts');
     }
 }

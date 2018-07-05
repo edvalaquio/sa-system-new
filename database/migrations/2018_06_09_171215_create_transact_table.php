@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSendTable extends Migration
+class CreateTransactTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateSendTable extends Migration
      */
     public function up()
     {
-        Schema::create('send', function (Blueprint $table) {
-            $table->integer('user_id');
+        Schema::create('transact', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('sender_id')->nullable();
+            $table->integer('receiver_id')->nullable();
             $table->integer('transaction_id');
+            $table->string('note');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreateSendTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('send');
+        Schema::dropIfExists('transact');
     }
 }

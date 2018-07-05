@@ -4,6 +4,7 @@
 @push('styles')
 <link href="{{ asset('css/home.css') }}" rel="stylesheet">
 <link href="{{ asset('css/accounts.css') }}" rel="stylesheet">
+<link href="{{ asset('css/transaction.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
