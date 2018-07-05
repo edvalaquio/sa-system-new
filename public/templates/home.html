@@ -1,9 +1,7 @@
 <div class="container">
+    <span class="loading" ng-show="!transactions"><i class="material-icons">hourglass_empty</i> Loading transactions...</span>
+    <span class="empty" ng-show="transactions.length == 0"><i class="material-icons">not_interested</i> No transactions </span>
     <div class="row">
-        <div>
-            <h2 ng-show="!transactions">Loading transactions...</h2>
-            <h2 ng-show="transactions.length == 0"> No transactions </h2>
-        </div>
         <div class="col s12 m8 l6">
             <div ng-show="transactions.length > 0" class="card card-default preview">
                 <div class="card-header">
@@ -37,7 +35,7 @@
                     <a ng-show="viewTransaction" href="#!/transaction?id=[[viewTransaction.id]]" class="btn light-blue">View Transaction</a>
                 </div>
             </div>
-            <div ng-show="!transactions" class="">
+            <div ng-show="transactions.length == 0" class="empty-inline">
                 No Data
             </div>
         </div>
@@ -52,7 +50,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="" ng-show="!transactions">
+            <div ng-show="transactions.length == 0" class="empty-inline">
                 No Data
             </div>
             <div ng-repeat="t in transactions" class="card card-default">

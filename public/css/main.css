@@ -185,3 +185,40 @@ nav .nav-wrapper{
 .modal{
 	max-height: 95%;
 }
+
+.loading,
+.empty{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	color: #888;
+	flex-direction: column;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.loading .material-icons{
+	animation: rotate 2s infinite;
+}
+
+.empty{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	color: #888;
+	flex-direction: column;
+}
+
+@keyframes rotate{	
+	0%{transform: rotate(0deg);}
+	50%{transform: rotate(0deg);}
+	100%{transform: rotate(360deg);}
+}
+
+nav .brand-logo.left {
+    left: 0.5rem;
+}
