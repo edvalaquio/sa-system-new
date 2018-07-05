@@ -192,7 +192,7 @@ nav .nav-wrapper{
 	align-items: center;
 	justify-content: center;
 	font-weight: bold;
-	color: #888;
+	color: #BBB;
 	flex-direction: column;
 	position: absolute;
 	top: 50%;
@@ -204,12 +204,13 @@ nav .nav-wrapper{
 	animation: rotate 2s infinite;
 }
 
-.empty{
-	display: inline-flex;
+.empty-inline{
+	text-align: center;
+	display: flex;
 	align-items: center;
 	justify-content: center;
 	font-weight: bold;
-	color: #888;
+	color: #BBB;
 	flex-direction: column;
 }
 
@@ -221,4 +222,60 @@ nav .nav-wrapper{
 
 nav .brand-logo.left {
     left: 0.5rem;
+}
+
+.card-empty{
+	background-color: #EEE;
+	border-radius: 10px;
+	margin-top: 20px;
+	min-height: calc(100vh - 100px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.card-empty span{
+	color: #BBB;
+	font-weight: bold;
+	width: 80%;
+	text-align: center;
+}
+
+.card-empty div{
+	margin-top: 20px;
+	width: 50%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.card-empty a{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	font-weight: bold;
+}
+
+.card-empty a:hover .material-icons{
+	animation: shake 0.5s 1;
+}
+
+.empty-mock{
+	background-color: #EEE;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	min-height: 40px;
+	padding: 10px 0;
+}
+
+.margin-top-start{
+	margin-top: 20px;
+}
+
+@keyframes shake{
+	0%{transform: rotate(0deg)}
+	25%{transform: rotate(15deg)}
+	75%{transform: rotate(-15deg)}
+	100%{transform: rotate(0deg)}
 }

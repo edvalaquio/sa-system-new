@@ -6,7 +6,7 @@
                 <span class="type received"><i class="material-icons">inbox</i>&nbsp;Received,&nbsp;</span>
                 <span class="timestamp">[[transaction.date | date : "fullDate"]]</span>
                 <span class="status pending">[[transaction.status]]</span>
-                <button class="btn waves-effect waves-light btn-small modal-trigger" name="action" data-target="add-modal" modal>Forward
+                <button class="btn waves-effect waves-light btn-small modal-trigger" id="forward" name="action" data-target="add-modal" modal>Forward
                     <i class="material-icons right">send</i>
                 </button>
             </section>
@@ -27,6 +27,17 @@
             </p>
 
             <h6>History</h6>
+
+            <!-- <div class="crumbs">
+                <div class="crumb" ng-repeat="t in transactions">
+                    <i ng-if="t.type == 'Sent'" class="material-icons receive">inbox</i>
+                    <i ng-if="t.type == 'Received'" class="material-icons send">near_me</i>
+                    <span>To work on</span>
+                    <span>[[t.date | date : "fullDate"]]</span>
+                    <span class="note">[[t.note]]</span>
+                </div>
+            </div> -->
+
             <table class="responsive-table centered">
                 <thead>
                     <tr>
@@ -42,11 +53,9 @@
                         <td>To work on</td>
                         <td>[[t.date | date : "fullDate"]]</td>
                         <td>[[t.note]]</td>
-
                     </tr>
                 </tbody>
             </table>
-            <p class="note"></p>
         </div>
     </div>
 </div>

@@ -1,6 +1,5 @@
 <div class="container">
     <span class="loading" ng-show="!transactions"><i class="material-icons">hourglass_empty</i> Loading transactions...</span>
-    <span class="empty" ng-show="transactions.length == 0"><i class="material-icons">not_interested</i> No transactions </span>
     <div class="row">
         <div class="col s12 m8 l6">
             <div ng-show="transactions.length > 0" class="card card-default preview">
@@ -35,12 +34,16 @@
                     <a ng-show="viewTransaction" href="#!/transaction?id=[[viewTransaction.id]]" class="btn light-blue">View Transaction</a>
                 </div>
             </div>
-            <div ng-show="transactions.length == 0" class="empty-inline">
-                No Data
+            <div ng-show="transactions.length == 0" class="card-empty">
+                <span>Create or receive transactions to start.</span>
+                <div>
+                    <a href="#!/received" class="pink-text text-darken-1"><i class="material-icons">inbox</i>Receive</a>
+                    <a href="#!/sent" class="pink-text text-darken-1"><i class="material-icons">near_me</i>Send</a>
+                </div>
             </div>
         </div>
         <div class="col s12 m4 l6">
-            <div class="fiter">
+            <div class="fiter" ng-hide="transactions.length == 0">
                 <ul id="date-filter">
                     <li ng-click="changeDate('today')" style="cursor: pointer;"><a>TODAY</a></li>
 
@@ -50,9 +53,7 @@
                     </li>
                 </ul>
             </div>
-            <div ng-show="transactions.length == 0" class="empty-inline">
-                No Data
-            </div>
+            <span class="empty-inline empty-mock margin-top-start" ng-show="transactions.length == 0"><i class="material-icons">not_interested</i> No transactions </span>
             <div ng-repeat="t in transactions" class="card card-default">
                 <div class="card-body" ng-click="showTransaction(t)" style="cursor: pointer;">
                     <a class="title"><h4 class="truncate">[[t.title]]</h4></a>
