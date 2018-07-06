@@ -23,7 +23,6 @@ class MainController extends Controller
         $content = Storage::get('MP1CV.pdf');
         if (Storage::exists('MP1CV.pdf')) {
             return response()->file(storage_path("app/".$path));
-            // return Storage::download($path)
             return "True";
         }
         return "False";

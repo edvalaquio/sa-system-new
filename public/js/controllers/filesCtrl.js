@@ -30,6 +30,9 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
 	            }
 			}).then(function(res){
 				$scope.transactions = res.data;
+				$scope.transactions.forEach(function(item, index){
+					item.date = new Date(item.date);
+				});
 			});
 		}
 

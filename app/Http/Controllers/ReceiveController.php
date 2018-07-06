@@ -14,7 +14,7 @@ class ReceiveController extends Controller
             ->leftjoin('users', 'users.id', '=', 'sender_id')
             ->where('receiver_id', '=', Auth::user()->id)
             ->select('*', 'transact.created_at', 'transactions.status' , 'transact.created_at as date')
-            ->orderBy('transact.created_at', 'asc')
+            ->orderBy('date', 'desc')
             ->take(10)
             ->get();
         // return $received;
@@ -65,8 +65,8 @@ class ReceiveController extends Controller
                 $q->where('transactions.description', 'LIKE', "%".$request->keyword."%")
                 ->orWhere('transactions.title', 'LIKE', "%".$request->keyword."%");
             })
-            ->select('*', 'transact.created_at', 'transactions.status', 'transact.created_at as date')
-            ->orderBy('transact.created_at', 'asc')
+            ->select('*','transactions.status', 'transact.created_at as date')
+            ->orderBy('date', 'desc')
             ->take(10)
             ->get();
         // return $received;

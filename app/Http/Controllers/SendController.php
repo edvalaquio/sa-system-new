@@ -16,7 +16,7 @@ class SendController extends Controller
             ->leftjoin('users', 'users.id', '=', 'receiver_id')
             ->where('sender_id', '=', Auth::user()->id)
             ->select('*', 'transact.created_at', 'transactions.status', 'transact.created_at as date')
-            ->orderBy('transact.created_at', 'asc')
+            ->orderBy('date', 'desc')
             ->take(10)
             ->get();
         // return $received;
@@ -70,7 +70,7 @@ class SendController extends Controller
         if(!$request->hasFile('file')){
             return "Fail";
         }
-        $path = $path = $request->file->store('images');
+        $path = $path = $request->file->store('files');
         return $path;
         // return $request->data['description'];
     }
@@ -102,9 +102,9 @@ class SendController extends Controller
                 $q->where('transactions.description', 'LIKE', "%".$request->keyword."%")
                 ->orWhere('transactions.title', 'LIKE', "%".$request->keyword."%");
             })
-            ->select('*', 'transact.created_at', 'transactions.status', 'transact.created_at as date')
-            ->orderBy('transact.created_at', 'asc')
+            ->select('*', 'transactions.status', 'transact.created_at as date')
             ->take(10)
+            ->orderBy('date', 'desc')
             ->get();
         // return $received;
         // return view('sent', compact('sent'));
