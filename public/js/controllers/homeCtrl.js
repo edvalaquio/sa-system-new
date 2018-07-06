@@ -5,7 +5,7 @@ angular.module("controllers.homeCtrl", [])
 	function($rootScope, $scope, $window, $location, $http, getUserID){
 		console.log("Here in HomeCtrl");
 		console.log(getUserID);
-
+		// this function will format the date to fit the requirement for the database
 		var formatDate = function(date) {
 		    var d = new Date(date),
 		        month = '' + (d.getMonth() + 1),
@@ -26,13 +26,9 @@ angular.module("controllers.homeCtrl", [])
 				$scope.transactions = res.data;
 				$scope.transactions.forEach(function(item, index){
 					item.date = new Date(item.date);
-					if(item.note.startsWith('Sent')){
-						$scope.transactions[index].type = "Sent";
-					} else {
-						$scope.transactions[index].type = "Received";
-					}
 				});
 				$scope.viewTransaction = $scope.transactions[0];
+				console.log(res.data);
 			}, function(error){
 				console.log(error);
 			});
@@ -62,6 +58,6 @@ angular.module("controllers.homeCtrl", [])
 			}
 			queryDate(formatDate(mDate));
 		};
-		
+
 	}
 ]);

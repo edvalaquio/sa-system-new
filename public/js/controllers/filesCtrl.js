@@ -92,5 +92,27 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
 		$scope.viewTransaction = function(data){
 			$location.path('/transaction').search({id : data});
 		}
+
+		$scope.fillAutocomplete = function(){
+			if($scope.transaction.recipient.length > 2){
+				$http({
+					method	:	'POST',
+					url		:	'/getUsersInGroup',
+					data	:	{
+						keyword		:	$scope.transaction.recipient
+					}
+				}).then(function(res){
+					console.log(res.data);
+					if($scope.autocomplete != undefined && $scope.autocomplete.length != res.data.length){
+						$scope.autocomplete = res.data;
+					}
+					if($scope.autocomplete == undefined){
+						$scope.autocomplete = res.data;
+					}
+				}, function(error){
+					console.log(error);
+				});
+			}
+		}
 	}
 ]);

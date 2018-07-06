@@ -15,4 +15,8 @@ class Staff extends Model
     public function getUser(){
         return $this->belongsTo('App\User', 'user_id');
     }
+
+    public function getAdmin(){
+        return $this->belongsTo('App\Admin', 'admin_id');
+    }
 }

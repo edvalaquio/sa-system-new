@@ -42,7 +42,7 @@
                 <thead>
                     <tr>
                         <th>Type</th>
-                        <th>Recipient</th>
+                        <th>Recipient/From</th>
                         <th>Date</th>
                         <th>Note</th>
                     </tr>
@@ -50,7 +50,8 @@
                 <tbody>
                     <tr ng-repeat="t in transactions">
                         <td>[[t.type]]</td>
-                        <td>To work on</td>
+                        <td ng-if="t.type == 'Received'">[[t.sender_name]]</td>
+                        <td ng-if="t.type == 'Sent'">[[t.receiver_name]]</td>
                         <td>[[t.date | date : "fullDate"]]</td>
                         <td>[[t.note]]</td>
                     </tr>
@@ -70,16 +71,15 @@
         <a class="modal-close close-btn"><i class="material-icons">clear</i></a>
         <form name="form">
             <!-- <input type="file"  /> -->
-
             <div class="input-field">
-                <input ng-model="recipient" type="text" id="recipient" name="recipient" list="autocomplete" autocomplete="off" ng-change="autocompleteRecipient()">
+                <input ng-model="recipient" type="text" id="recipient" name="recipient" list="autocomplete" autocomplete="off" ng-change="fillAutocomplete()">
                 <datalist id="autocomplete">
-                    <option ng-repeat="name in names" value="s">asdfsafsdf</option>
+                    <option ng-repeat="ac in autocomplete" value="[[ac.name]]"></option>
                 </datalist>
                 <label for="recipient">Recipient</label>
             </div>
             <div class="input-field">
-                <textarea  class="materialize-textarea" id="note" name="description"></textarea>
+                <textarea ng-model="note"class="materialize-textarea" id="note" name="description"></textarea>
                 <label for="note">Note</label>
             </div>
             <label>Tags</label>

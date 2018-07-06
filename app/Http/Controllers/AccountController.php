@@ -36,13 +36,12 @@ class AccountController extends Controller
         if($request->type == 'admin'){
             $type = "admin";
         }
-        return $request->all();
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'username' => $request->username,
             'gender' => $request->gender,
-            'type' => $type,
+            'type' => $request->type,
             'status' => "ok",
             'password' => Hash::make($request->password),
         ]);
@@ -57,5 +56,35 @@ class AccountController extends Controller
                 'admin_id' => Auth::user()->getType->id,
             ]);
         }
+    }
+
+    public function usersInGroup(Request $request){
+        $group = "";
+        if(Auth::user()->type == 'admin'){
+            $group = Auth::user()->getType->group;
+        }else{
+            $group = Auth::user()->getType->getAdmin->group;
+        }
+        // return $group;
+        $admins = User::join('admins', 'users.id', '=', 'admins.user_id')
+            ->select('users.name as name', 'users.id as id')
+            ->where('admins.group', '=', $group)
+            ->where('name', 'LIKE', '%'.$request->keyword.'%')
+            ->get();
+        $staffs = User::join('staffs', 'users.id', '=', 'staffs.user_id')
+            ->select('users.name as name', 'users.id as id')
+            ->join('admins', 'admins.id', '=', 'staffs.admin_id')
+            ->where('admins.group', '=', $group)
+            ->where('name', 'LIKE', '%'.$request->keyword.'%')
+            ->get();
+        $users = [];
+        foreach ($admins as $admin) {
+            $users[] = ['name' => $admin->name, 'id'=>$admin->id];
+        }
+        foreach ($staffs as $staff) {
+            $users[] = ['name' => $staff->name, 'id'=>$staff->id];
+        }
+
+        return json_encode($users);
     }
 }

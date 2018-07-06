@@ -5,24 +5,65 @@ angular.module("controllers.transactionCtrl", [])
 	function($rootScope, $scope, $window, $location, $http){
 		console.log("Here in accountsCtrl");
 		$('.modal').modal();
-		var $transactionID = $location.search().id;
-		if($transactionID){
-			$http({
-				method	:	'GET',
-				url		: '/transaction/' + $transactionID
-			}).then(function(res){
-				$scope.transaction = res.data[0];
-				$scope.transaction.date = new Date($scope.transaction.date);
-				$scope.transactions = res.data;
-				console.log($scope.transaction);
-				$scope.transactions.forEach(function(item, index){
-					item.date = new Date(item.date);
-					if(item.note.startsWith('Sent')){
-						$scope.transactions[index].type = "Sent";
-					} else {
-						$scope.transactions[index].type = "Received";
-					}
+		var transactID = $location.search().id;
+		function updateInterface(){
+			if(transactID){
+				$http({
+					method	:	'GET',
+					url		: '/transaction/' + transactID
+				}).then(function(res){
+					$scope.transactions = res.data;
+					$scope.transactions.forEach(function(item, index){
+						item.date = new Date(item.date);
+						console.log(item);
+						if(item.id == transactID){
+							$scope.transaction = item;
+						}
+					});
+					$scope.transaction.date = new Date($scope.transaction.date);
+					console.log($scope.transaction);
+				}, function(error){
+					console.log(error);
 				});
+			}
+		}
+		updateInterface();
+
+		$scope.fillAutocomplete = function(){
+			if($scope.recipient.length > 2){
+				$http({
+					method	:	'POST',
+					url		:	'/getUsersInGroup',
+					data	:	{
+						keyword		:	$scope.recipient
+					}
+				}).then(function(res){
+					console.log(res.data);
+					if($scope.autocomplete != undefined && $scope.autocomplete.length != res.data.length){
+						$scope.autocomplete = res.data;
+					}
+					if($scope.autocomplete == undefined){
+						$scope.autocomplete = res.data;
+					}
+				}, function(error){
+					console.log(error);
+				});
+			}
+		}
+
+		$scope.submitTransaction = function(){
+			$http({
+				method	:	'POST',
+				url		:	'/send/send',
+				data	:	{
+					transact_id		:	transactID,
+					note 			:	$scope.note,
+					recipient		:	$scope.recipient
+
+				}
+			}).then(function(res){
+				$('#add-modal')[0].reset();
+				updateInterface();
 			}, function(error){
 				console.log(error);
 			});

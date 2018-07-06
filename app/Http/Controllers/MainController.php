@@ -33,10 +33,7 @@ class MainController extends Controller
     public function index(){
       if(Auth::check()){
           if(Auth::user()->status != "deleted"){
-              if(Auth::user()->type == "admin"){
-                  // return redirect('/home');
-                  return view('index');
-              }
+              return view('index');
           }else{
               return view('accountDeleted');
           }

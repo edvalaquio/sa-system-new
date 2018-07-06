@@ -28,15 +28,25 @@ class HomeController extends Controller
     public function index($date)
     {
 
-        $transactions = DB::table('transact as t1')
-        ->select('t1.id', 't1.note', 't1.created_at as date', 't2.title', 't2.comment', 't2.description', 't2.status', 't2.has_documents')
-        ->join('transactions AS t2', 't1.transaction_id', '=', 't2.id')
+        $transactions = Transaction::join('transact as t2', 't2.transaction_id', '=', 'transactions.id')
+        ->select('transactions.id as transaction_id', 't2.id as id', 't2.note', 't2.created_at as date', 'transactions.title', 'transactions.comment', 'transactions.description', 'transactions.status', 'transactions.has_documents', 'sender_id', 'receiver_id')
         ->where(function($q){
             $q->where('sender_id', Auth::user()->id)
             ->orWhere('receiver_id', Auth::user()->id);
         })
-        ->whereDate('t1.created_at', Carbon::parse($date))
+        ->whereDate('transactions.created_at', Carbon::parse($date))
+        ->orderBy('date', 'desc')
         ->get();
+
+        foreach ($transactions as $key => $value) {
+            if($value->sender_id == Auth::user()->id){
+                $value['type'] = "Sent";
+            }
+            if($value->receiver_id == Auth::user()->id){
+                $value['type'] = "Received";
+            }
+            $transactions[$key] = $value;
+        }
         // $transactions = DB::table('transact')
         // ->join('transactions', 'transaction_id', '=', 'transact.id')
         // ->get();
@@ -44,15 +54,6 @@ class HomeController extends Controller
         // return $transactions;
     }
 
-    public function singleTransaction($id){
-        $transactions = DB::table('transact as t1')
-        ->select('t1.id', 't1.note', 't2.created_at as date', 't2.title', 't2.comment', 't2.description', 't2.status', 't2.has_documents')
-        ->join('transactions AS t2', 't1.transaction_id', '=', 't2.id')
-        ->where('t1.transaction_id', '=', $id)
-        ->get();
-
-        return json_encode($transactions);
-    }
 
     public function transactionAt($date){
 

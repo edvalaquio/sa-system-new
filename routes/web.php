@@ -24,6 +24,7 @@ Route::get('/getAdmins', "AccountController@getAdmins");
 Route::get('/getStaffs', "AccountController@getStaffs");
 
 
+Route::post('/getUsersInGroup', "AccountController@usersInGroup");
 Route::post('/send/search', "SendController@search");
 Route::post('/receive/search', "ReceiveController@search");
 Route::post('/testPut', "AdminController@addStaff");
@@ -33,6 +34,7 @@ Route::post('/autocompleteRecipient', "TransactionController@autocompleteRecipie
 // Modified creates
 Route::post('/receive/create', "ReceiveController@createReceive")->name('create.receive');
 Route::post('/receive/upload', "ReceiveController@uploadReceive")->name('upload.receive');
+Route::post('/send/send', "SendController@sendTransaction");
 Route::post('/send/create', "SendController@createSend")->name('create.send');
 Route::post('/send/upload', "SendController@uploadSend")->name('upload.send');
 

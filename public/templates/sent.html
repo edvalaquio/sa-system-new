@@ -65,8 +65,11 @@
                 <label for="description">Description</label>
             </div>
             <div class="input-field">
-                <input ng-model="transaction.recipient" type="text" id="recipient" name="recipient">
+                <input ng-model="transaction.recipient" type="text" list="autocomplete" id="recipient" name="recipient" autocomplete="off" ng-change="fillAutocomplete()">
                 <label for="recipient">Recipient</label>
+                <datalist id="autocomplete">
+                    <option ng-repeat="ac in autocomplete" value="[[ac.name]]"></option>
+                </datalist>
             </div>
             <label>Tags</label>
             <div class="chips chips-autocomplete"></div>

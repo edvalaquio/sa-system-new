@@ -16,7 +16,6 @@ angular.module("controllers.accountsCtrl", [])
 				url		:	'/getStaffs'
 			}).then(function(res){
 				$scope.staffs = res.data;
-				console.log(res.data);
 			});
 		}
 		updateInterface();
@@ -29,20 +28,45 @@ angular.module("controllers.accountsCtrl", [])
 				$('#register').addClass('disabled');
 				console.log("add disabled");
 			}
+
+		}
+
+		// $scope.checkType = function(){
+		// 	console.log($('input[name="type"]').val());
+		// 	if($('input[name="type"]').val() == 'staff'){
+		// 		console.log('slideUp');
+		// 	}else{
+		// 		$('#group-field').slideDown(150);
+		// 	}
+		// }
+		$scope.staffClicked = function(){
+			$('#group-field').slideUp(150);
+		}
+
+		$scope.adminClicked = function(){
+			$('#group-field').slideDown(150);
 		}
 
 		$scope.registerUser = function(){
-			var formdata = $('#register-form').serialize();
+			$('#register-form')[0].reset();
 			$http({
 				method	:	'POST',
 				url		:	'/account/createAccount',
-				data	:	formdata,
+				data	:	{
+					username	:	$scope.username,
+					name		:	$scope.name,
+					email		: 	$scope.email,
+					gender		: 	$scope.gender,
+					type		:	$scope.type,
+					group 		:	$scope.gender,
+					password	:	$scope.password
+				}
 			}).then(function(res){
 				console.log(res);
 				console.log('success');
 				updateInterface();
 			},function(error){
-				console.log("error");
+				console.log(error);
 			});
 		}
 	}

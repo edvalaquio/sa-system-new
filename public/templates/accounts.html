@@ -90,7 +90,7 @@
         <h5>Add Account</h5>
         <form id="register-form">
             <div class="input-field">
-                <input id="username" type="text" class="form-control" name="username" value="" required>
+                <input id="username" ng-model="username" type="text" class="form-control" name="username" value="" required>
                 <label for="username">Username</label>
             </div>
 
@@ -108,7 +108,7 @@
                 <label for="email">E-mail Address</label>
             </div>
 
-            <div class="radio-buttons">
+            <div class="radio-buttons" ng-init="gender='female'">
                 <label>Gender</label>
                 <label>
                     <input type="radio" ng-model="gender" value="female" name="gender" checked>
@@ -120,13 +120,13 @@
                 </label>
             </div>
 
-            <div class="radio-buttons">
+            <div class="radio-buttons" ng-init="type='admin'">
                 <label>Type</label>
-                <label id="admin">
-                    <input type="radio" ng-model="type" value="admin" name="type" checked>
+                <label id="admin" ng-click="adminClicked()">
+                    <input type="radio" ng-model="type" value="admin" name="type">
                     <span>Admin</span>
                 </label>
-                <label id="staff">
+                <label id="staff" ng-click="staffClicked()">
                     <input type="radio" ng-model="type" value="staff" name="type">
                     <span>Staff</span>
                 </label>
@@ -146,11 +146,11 @@
 
             <div class="input-field">
                 <span class="check-pass" id="show-passC"><i class="material-icons">visibility</i></span>
-                <input id="password-confirm" ng-model="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                 <label for="password-confirm">Confirm Password</label>
             </div>
 
-            <button type="submit" id="register" class="btn btn-block amber accent-4 disabled" ng-click="registerUser()"> Register </button>
+            <button type="submit" id="register" class="btn btn-block amber accent-4 disabled modal-close" ng-click="registerUser()"> Register </button>
         </form>
     </div>
 </div>
