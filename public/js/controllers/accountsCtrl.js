@@ -69,5 +69,15 @@ angular.module("controllers.accountsCtrl", [])
 				console.log(error);
 			});
 		}
+
+		$scope.setAccountData = function(name, email){
+			console.log(name + email);
+			$scope.accountName = name;
+			$scope.accountEmail = email;
+		}
+
+		$scope.deleteAccount = function(id){
+			
+		}
 	}
 ]);

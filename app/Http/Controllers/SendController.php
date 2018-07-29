@@ -70,7 +70,8 @@ class SendController extends Controller
         if(!$request->hasFile('file')){
             return "Fail";
         }
-        $path = $path = $request->file->store('files');
+        // for testing purpose only, will modify later
+        $path = $request->file('file')->storeAs('files');
         return $path;
         // return $request->data['description'];
     }

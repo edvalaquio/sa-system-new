@@ -34,7 +34,7 @@ class HomeController extends Controller
             $q->where('sender_id', Auth::user()->id)
             ->orWhere('receiver_id', Auth::user()->id);
         })
-        ->whereDate('transactions.created_at', Carbon::parse($date))
+        ->whereDate('t2.created_at', Carbon::parse($date))
         ->orderBy('date', 'desc')
         ->get();
 

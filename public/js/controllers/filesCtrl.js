@@ -5,6 +5,25 @@ files.controller("filesCtrl", ["$rootScope", "$scope", "$window", "$location", "
 	function($rootScope, $scope, $window, $location, $http, apiUrl){
 		$('.modal').modal();
         $('.chips').chips();
+		var tags = {};
+		$http({
+			method	:	'GET',
+			url		:	'/getTags'
+		}).then(function(res){
+			$.each(res.data, function(index, value){
+				tags[value.name] = null;
+			});
+		});
+		$('.chips-autocomplete').chips({
+			autocompleteOptions: {
+				data: tags,
+				limit: Infinity,
+				minLength: 1
+			}
+		});
+		$('.chip > input').change(function(){
+			console.log("change");
+		})
         $scope.uploading = false;
 
 		// check if either sent or received

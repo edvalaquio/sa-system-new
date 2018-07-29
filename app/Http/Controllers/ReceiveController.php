@@ -52,7 +52,7 @@ class ReceiveController extends Controller
         if(!$request->hasFile('file')){
             return "Fail";
         }
-        $path = $path = $request->file->store('images');
+        $path = $path = $request->file->storeAs('images', 'testFilename');
         return $path;
         // return $request->data['description'];
     }

@@ -62,7 +62,8 @@ angular.module("controllers.transactionCtrl", [])
 
 				}
 			}).then(function(res){
-				$('#add-modal')[0].reset();
+				$('#forward-form')[0].reset();
+				$('.modal').modal('close');
 				updateInterface();
 			}, function(error){
 				console.log(error);

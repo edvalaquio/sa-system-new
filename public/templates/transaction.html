@@ -69,8 +69,9 @@
     <div ng-hide="uploading" class="modal-content">
         <h4>Forward To</h4>
         <a class="modal-close close-btn"><i class="material-icons">clear</i></a>
-        <form name="form">
+        <form name="form" id="forward-form">
             <!-- <input type="file"  /> -->
+
             <div class="input-field">
                 <input ng-model="recipient" type="text" id="recipient" name="recipient" list="autocomplete" autocomplete="off" ng-change="fillAutocomplete()">
                 <datalist id="autocomplete">
@@ -84,7 +85,7 @@
             </div>
             <label>Tags</label>
             <div class="chips chips-autocomplete"></div>
-            <button class="btn btn-large green waves-effect waves-light" id="confirm-add" ng-click="submitTransaction('send')"><i class="material-icons">add</i></button>
+            <button class="btn btn-large green waves-effect waves-light" id="confirm-add" ng-click="submitTransaction()"><i class="material-icons">add</i></button>
         </form>
     </div>
 </div>

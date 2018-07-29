@@ -22,7 +22,7 @@ Route::get('/transaction/{transaction_id}', "TransactionController@index");
 Route::get('/userID', "HomeController@getUserID");
 Route::get('/getAdmins', "AccountController@getAdmins");
 Route::get('/getStaffs', "AccountController@getStaffs");
-
+Route::get('/getTags', "TagController@getTags");
 
 Route::post('/getUsersInGroup', "AccountController@usersInGroup");
 Route::post('/send/search', "SendController@search");
