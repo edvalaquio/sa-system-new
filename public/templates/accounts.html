@@ -75,13 +75,13 @@
         <div class="col s12">
             <h4>Admin</h4>
             <ul class="collection">
-                <a ng-repeat="admin in admins" class="collection-item modal-trigger"
-                    ng-click="setAccountData(admin.name, admin.email)" data-target="delete-modal"> [[admin.name]] </a>
+                <a ng-repeat="admin in admins" class="collection-item modal-trigger" ng-class="{red: staff.status == 'deleted'}"
+                    ng-click="setAccountData(admin)" data-target="delete-modal"> [[admin.name]] </a>
             </ul>
             <h4>Staff</h4>
             <ul class="collection">
-                <a ng-repeat="staff in staffs" class="collection-item modal-trigger"
-                    ng-click="setAccountData(staff.name, staff.email)" data-target="delete-modal">[[staff.name]] </a>
+                <a ng-repeat="staff in staffs" class="collection-item modal-trigger" ng-class="{red: staff.status == 'deleted'}"
+                    ng-click="setAccountData(staff)" data-target="delete-modal">[[staff.name]] </a>
                 <a ng-show="staffs.length == 0" class="collection-item red">No Data </a>
             </ul>
         </div>
@@ -92,10 +92,12 @@
     <div class="modal-content">
         <h5>Account Settings</h5>
         <h6>Name:</h4>
-        <p>[[accountName]]</p>
+        <p>[[activeAccount.name]]</p>
         <h6>E-mail:</h6>
-        <p>[[accountEmail]]</p>
-        <button type="submit" id="delete-button" class="btn btn-block amber accent-4 modal-close" ng-click="registerUser()"> Delete </button>
+        <p>[[activeAccount.email]]</p>
+        <button type="submit" id="delete-button" ng-if="activeAccount.status == 'ok'" class="btn btn-block amber accent-4 modal-close" ng-click="deleteAccount()"> Delete </button>
+        <button type="submit" id="recover-button" ng-if="activeAccount.status == 'deleted'" class="btn btn-block amber accent-4 modal-close" ng-click="recoverAccount()"> Recover </button>
+
     </div>
 </div>
 

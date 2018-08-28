@@ -9,7 +9,7 @@ angular.module("controllers.accountsCtrl", [])
 				method	:	'GET',
 				url		:	'/getAdmins'
 			}).then(function(res){
-				$scope.admins = res.data;
+				$scope.admins = res.data
 			});
 			$http({
 				method	: 	'GET',
@@ -41,11 +41,11 @@ angular.module("controllers.accountsCtrl", [])
 		// }
 		$scope.staffClicked = function(){
 			$('#group-field').slideUp(150);
-		}
+		};
 
 		$scope.adminClicked = function(){
 			$('#group-field').slideDown(150);
-		}
+		};
 
 		$scope.registerUser = function(){
 			$('#register-form')[0].reset();
@@ -68,16 +68,32 @@ angular.module("controllers.accountsCtrl", [])
 			},function(error){
 				console.log(error);
 			});
-		}
+		};
 
-		$scope.setAccountData = function(name, email){
-			console.log(name + email);
-			$scope.accountName = name;
-			$scope.accountEmail = email;
-		}
+		$scope.setAccountData = function(account){
+			console.log(account);
+			$scope.activeAccount = account;
+			// $scope.toggledAccountId = account.users.id;
+		};
 
 		$scope.deleteAccount = function(id){
-			
+			$http({
+				method	: 	'POST',
+				url		:	'/user/delete',
+				data	:	{userId	: $scope.activeAccount.id}
+			}).then(function(res){
+				updateInterface();
+			});
+		};
+
+		$scope.recoverAccount = function(id){
+			$http({
+				method	:	'POST',
+				url		:	'/user/recover',
+				data	:	{userId	: $scope.activeAccount.id}
+			}).then(function(res){
+				updateInterface();
+			});
 		}
 	}
 ]);

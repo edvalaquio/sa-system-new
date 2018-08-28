@@ -30,6 +30,8 @@ Route::post('/receive/search', "ReceiveController@search");
 Route::post('/testPut', "AdminController@addStaff");
 Route::post('/home', "HomeController@index");
 Route::post('/autocompleteRecipient', "TransactionController@autocompleteRecipient");
+Route::post('/user/delete', "AccountController@deleteAccount");
+Route::post('/user/recover' , "AccountController@recoverAccount");
 
 // Modified creates
 Route::post('/receive/create', "ReceiveController@createReceive")->name('create.receive');

@@ -33,7 +33,9 @@
                             <li><a href="#!/" class="pink-text text-darken-1"><i class="material-icons">home</i></a></li>
                             <li><a href="#!/received" class="pink-text text-darken-1"><i class="material-icons">inbox</i></a></li>
                             <li><a href="#!/sent" class="pink-text text-darken-1"><i class="material-icons">near_me</i></a></li>
-                            <li><a href="#!/accounts" class="pink-text text-darken-1"><i class="material-icons">group</i></a></li>
+                            @if (Auth::user()->type == 'admin')
+                                <li><a href="#!/accounts" class="pink-text text-darken-1"><i class="material-icons">group</i></a></li>
+                            @endif
                             <li>
                                 <a class="dropdown-trigger btn-flat grey-text text-lighten-3" data-target="options" href="#" role="button">
                                     {{ Auth::user()->name }}

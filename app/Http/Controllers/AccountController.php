@@ -19,14 +19,17 @@ class AccountController extends Controller
 
     public function getAdmins(){
         $admins = Admin::join('users', 'users.id', '=', 'admins.user_id')
+            ->select('users.id' , 'username', 'email', 'name', 'status')
             ->get();
         return json_encode($admins);
     }
 
     public function getStaffs(){
+        if(Auth::user()->)
         $staffs = Staff::join('users', 'users.id', '=', 'staffs.user_id')
             ->join('admins', 'admins.id', '=', 'staffs.admin_id')
             ->where('admins.group', '=', Auth::user()->getType->group)
+            ->select('users.id' , 'username', 'email', 'name', 'status')
             ->get();
         return json_encode($staffs);
     }
@@ -86,5 +89,19 @@ class AccountController extends Controller
         }
 
         return json_encode($users);
+    }
+
+    public function deleteAccount(Request $request){
+        $userId = $request->userId;
+        $user = User::find($userId);
+        $user->status = 'deleted';
+        $user->save();
+    }
+
+    public function recoverAccount(Request $request){
+        $userId = $request->userId;
+        $user = User::find($userId);
+        $user->status = 'ok';
+        $user->save();
     }
 }
